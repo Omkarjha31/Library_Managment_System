@@ -7,9 +7,10 @@ This code basically has 4 functions
 3. Issue books
 4. Return books
 
-This how the output looks like:-
+This is how the output looks like:-
 
-1.On Terminal
+1. On Terminal
+   
 Add books to the database
 ![Add books](https://github.com/user-attachments/assets/324caa1c-8aaa-42e6-aade-e232d0b6a26c)
 
@@ -22,7 +23,8 @@ Issue books
 Return books
 ![Return book](https://github.com/user-attachments/assets/c34781ac-08cf-464d-8b67-906dcfeaf5a1)
 
-2.On MYSQL
+2. On MYSQL
+
 Books table
 ![Books SQL](https://github.com/user-attachments/assets/5f6b6941-6a1c-4b92-88f3-4faa0f1c0839)
 
