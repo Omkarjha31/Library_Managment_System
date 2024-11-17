@@ -15,9 +15,7 @@ except mysql.connector.Error as err:
     print(f"Error: {err}")
     
 def create_tables():
-
     cursor = connection.cursor()
-
     # Create Books table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS books (
@@ -27,7 +25,6 @@ def create_tables():
         quantity INT NOT NULL
     )
     ''')
-
     # Create Issued Books table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS issued_books (
@@ -37,7 +34,6 @@ def create_tables():
         FOREIGN KEY (book_id) REFERENCES books (id)
     )
     ''')
-
     connection.commit()
     connection.close()
 
@@ -74,10 +70,8 @@ def issue_book(book_id, issued_to):
         database="library_db"
     )
     cursor = connection.cursor()
-
     cursor.execute("SELECT quantity FROM books WHERE id = %s", (book_id,))
     book = cursor.fetchone()
-
     if book and book[0] > 0:
         cursor.execute("INSERT INTO issued_books (book_id, issued_to) VALUES (%s, %s)", (book_id, issued_to))
         cursor.execute("UPDATE books SET quantity = quantity - 1 WHERE id = %s", (book_id,))
@@ -85,7 +79,6 @@ def issue_book(book_id, issued_to):
         print("Book issued successfully.")
     else:
         print("Book not available.")
-
     connection.close()
 
 def return_book(issue_id):
@@ -96,10 +89,8 @@ def return_book(issue_id):
         database="library_db"
     )
     cursor = connection.cursor()
-
     cursor.execute("SELECT book_id FROM issued_books WHERE id = %s", (issue_id,))
     issued_book = cursor.fetchone()
-
     if issued_book:
         cursor.execute("DELETE FROM issued_books WHERE id = %s", (issue_id,))
         cursor.execute("UPDATE books SET quantity = quantity + 1 WHERE id = %s", (issued_book[0],))
@@ -107,12 +98,10 @@ def return_book(issue_id):
         print("Book returned successfully.")
     else:
         print("Issued book not found.")
-
     connection.close()
 
 def main():
     create_tables()
-
     while True:
         print("\nLibrary Management System")
         print("1. Add Book")
@@ -120,9 +109,7 @@ def main():
         print("3. Issue Book")
         print("4. Return Book")
         print("5. Exit")
-
         choice = input("Enter your choice: ")
-
         if choice == "1":
             title = input("Enter book title: ")
             author = input("Enter book author: ")
